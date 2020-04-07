@@ -1,9 +1,9 @@
 package com.rabbitmq.springbootrabbitmq.producer;
 
+import com.rabbitmq.springbootrabbitmq.config.RabbitMQProperties;
 import com.rabbitmq.springbootrabbitmq.model.Notification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 //kuyruğa data gönderir
@@ -14,16 +14,14 @@ public class NotificationProducer {
     //rabibt templateyi çağırdık.rabitmqnin connectionu gibi
     private final RabbitTemplate rabbitTemplate;
 
-    //routingName yi aldık
-    @Value("${rabbit.routing.name}")
-    private String routingName;
+    //rabbimq properitesi çağırdık
+    private final RabbitMQProperties rabbitMQProperties;
 
-    @Value("${rabbit.exchange.name}")
-    private String exchangeName;
 
     //aldığı notificationu kuyruğa atacak
     public void sendToQueue(Notification notification){
         System.out.println("notification sent id : " + notification.getId());
-        rabbitTemplate.convertAndSend(exchangeName,routingName,notification);//notifikasyonu gönderdik
+        //exchange name ile routingkey ile mesajı gönderdik
+        rabbitTemplate.convertAndSend(rabbitMQProperties.getExchangeName(),rabbitMQProperties.getRoutingKey(),notification);//notifikasyonu gönderdik
     }
 }
