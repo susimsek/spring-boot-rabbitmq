@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "cookie"
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+    #volumes:
+      # - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      # - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      # - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+    ports:
+      - 5672:5672 #uygulaammızın bağlanacağı port ampq port
+      - 15672:15672 #managment portu
