@@ -1,11 +1,13 @@
 package com.rabbitmq.springbootrabbitmq.listener;
 
 import com.rabbitmq.springbootrabbitmq.model.Notification;
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 //kuyruktan notifikasyonları dinler
 @Service //servis olrak tanımladık
+@RequiredArgsConstructor
 public class NotificationListener {
 
     //kuyruktan aldığı notificationu ekrana yazar

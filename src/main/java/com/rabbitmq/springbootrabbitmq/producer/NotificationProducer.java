@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NotificationProducer {
 
-    //rabibt templateyi çağırdık.rabitmqnin connectionu gibi
+    //rabit templateyi çağırdık.rabitmqnin connectionu gibi
     private final RabbitTemplate rabbitTemplate;
 
     //rabbimq properitesi çağırdık
